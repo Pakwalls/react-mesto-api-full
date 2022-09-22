@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+  padding: 45px 0 0;
+  width: 100%;
+  max-width: 880px;
+  min-height: 74px;
+  border-bottom: solid 1px;
+  border-color: rgba(84, 84, 84, .7);
+}
+
+@media screen and (max-width: 918px) {
+  .header {
+    max-width: calc(100% * (282 / 320));
+    padding: 28px 0 0;
+    min-height: 56px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    max-width: 100%;
+  }
+}

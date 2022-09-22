@@ -1,0 +1,14 @@
+.article__del-btn {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  height: 19px;
+  width: 18px;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  background-image: url(../../../images/del_button.svg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}

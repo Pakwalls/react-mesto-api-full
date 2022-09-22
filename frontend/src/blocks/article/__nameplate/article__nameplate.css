@@ -1,0 +1,7 @@
+.article__nameplate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-sizing: border-box;
+}

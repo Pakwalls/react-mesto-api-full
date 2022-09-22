@@ -1,0 +1,5 @@
+.profile__title-box {
+  display: flex;
+  align-items: baseline;
+  position: relative;
+}

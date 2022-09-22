@@ -1,0 +1,13 @@
+.profile__card {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+ 
+@media screen and (max-width: 560px) {
+  .profile__card {
+    gap: 26px;
+  }
+}

@@ -1,0 +1,8 @@
+.header__exit-btn {
+  background-color: transparent;
+  border: none;
+  color: #A9A9A9;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+}
