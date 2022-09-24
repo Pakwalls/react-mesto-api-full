@@ -32,7 +32,7 @@ ___________________________________
 
 
 ### Ссылка на сайт:
-IP x.x.x.x
-Frontend https://...
-Backend https://api...
+IP 158.160.4.235
+Frontend https://pakwalls.mesto.nomoredomains.sbs
+Backend https://api.pakwalls.mesto.nomoredomains.sbs
 *спасибо, что заглянули*
