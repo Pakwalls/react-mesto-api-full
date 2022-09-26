@@ -6,14 +6,20 @@ const NotFoundError = require('../utils/errors/NotFoundError');
 const UnauthorizedError = require('../utils/errors/UnauthorizedError');
 const ConflictError = require('../utils/errors/ConflictError');
 
-module.exports.getMe = (req, res, next) => {
-  const decodedId = jwt.decode(req.cookies.jwt)._id;
+const { JWT_SECRET, NODE_ENV } = process.env;
+const { DEV_JWT_SECRET } = require('../utils/constants');
 
-  User.findById(decodedId)
+module.exports.getMe = (req, res, next) => {
+  User.findById(req.user._id)
     .then((user) => {
       res.status(200).send(user);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        return next(new BadRequestError('Введены некорректные данные'));
+      }
+      return next(err);
+    });
 };
 
 module.exports.login = (req, res, next) => {
@@ -23,15 +29,10 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        process.env.JWT_SECRET,
+        NODE_ENV === 'production' ? JWT_SECRET : DEV_JWT_SECRET,
         { expiresIn: '7d' },
       );
-      res.cookie('jwt', token, {
-        maxAge: 3600000,
-        httpOnly: true,
-        sameSite: true,
-      });
-      res.send(user);
+      res.send({ token });
     })
     .catch(() => {
       next(new UnauthorizedError('Некорректные данные'));

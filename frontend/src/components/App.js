@@ -28,7 +28,7 @@ function App() {
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   // -------------------------------------------------------------------------------------------------------------------------- стейты с объектами
-  const [currentUser, setCurrentUser] = useState({name:'', about:''});
+  const [currentUser, setCurrentUser] = useState({name: '', about: ''});
   const [cards, setCards] = useState([]);
   const [userEmail, setUserEmail] = useState('');
   // -------------------------------------------------------------------------------------------------------------------------- переменные
@@ -37,7 +37,7 @@ function App() {
   // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(id => id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked)
       .then((newCard) => {
@@ -83,7 +83,8 @@ function App() {
   
   useEffect(() => {
     tokenCheck();
-  }, [isLoggedIn])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
  
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
@@ -91,7 +92,7 @@ function App() {
     if (jwt) {
       getUserData(jwt)
       .then((res) => {
-        setUserEmail(res.data.email)
+        setUserEmail(res.email)
         setIsLoggedIn(true);
         history.push('/');
       })
@@ -134,6 +135,7 @@ function App() {
   const handleLogOut = () => {
     setUserEmail('');
     setIsLoggedIn(false);
+    setCurrentUser({});
     localStorage.removeItem('jwt');
     history.push('/sign-in');
   }

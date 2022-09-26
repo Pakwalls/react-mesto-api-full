@@ -1,13 +1,9 @@
-import { token } from './utils.js';
-
 class Api {
   constructor() {
-    this._token = token;
-    this._api = "https://mesto.nomoreparties.co/v1/cohort-43";
-    this._contentType = "application/json";
+    this._api = 'http://localhost:3000';
     this._headers = {
-      "Authorization": this._token,
-      "Content-type": this._contentType,
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      "Content-type": "application/json",
     };
   }
 
@@ -100,5 +96,5 @@ class Api {
   }
 }
 
-const api = new Api(token)
+const api = new Api()
 export default api
