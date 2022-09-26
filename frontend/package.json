@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* pakwalls@158.160.4.235:/home/pakwalls/mesto-frontend"
+    "deploy": "npm run build && scp -r ./build/* pakwalls@62.84.121.152:/home/pakwalls/react-mesto-api-full/frontend"
   },
   "eslintConfig": {
     "extends": [

@@ -1,6 +1,6 @@
 class Api {
   constructor() {
-    this._api = 'http://localhost:3000';
+    this._api = 'https://api.pakwalls.mesto.nomoredomains.sbs';
     this._headers = {
       authorization: `Bearer ${localStorage.getItem('jwt')}`,
       "Content-type": "application/json",
