@@ -5,7 +5,6 @@ import { useContext } from 'react';
 function Main({cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete}) {
   const currentUser = useContext(CurrentUserContext)
 
-
   return (
     <main className="content">
       <section className="profile">
@@ -44,7 +43,7 @@ function Main({cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCa
 
       <section className="elements">
         <ul className="cards">
-          {cards.map((card) => (
+          {cards.slice(0).reverse().map((card) => (
             <Card 
               key={card._id}
               card={card} 

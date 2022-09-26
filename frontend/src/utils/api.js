@@ -94,6 +94,10 @@ class Api {
     this.deleteLike(cardId):
     this.putLike(cardId)
   }
+
+  updateToken(token) {
+    this._headers.authorization = `Bearer ${token}`;
+  }
 }
 
 const api = new Api()

@@ -43,7 +43,7 @@ export const getUserData = (token) => {
     method: 'GET',
     headers: {
       ...headers,
-      "Authorization" : `Bearer ${token}`
+      'authorization' : `Bearer ${token}`
     }
   })
   .then(res => checkResponse(res));

@@ -28,7 +28,7 @@ function App() {
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   // -------------------------------------------------------------------------------------------------------------------------- стейты с объектами
-  const [currentUser, setCurrentUser] = useState({name: '', about: ''});
+  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [userEmail, setUserEmail] = useState('');
   // -------------------------------------------------------------------------------------------------------------------------- переменные
@@ -72,13 +72,12 @@ function App() {
     if (isLoggedIn) {
       Promise.all([api.fetchCardsList(), api.fetchUserInfo()])
       .then(([cards, user]) => {
-        setCards(cards);
-
         setCurrentUser(user)
+        
+        setCards(cards);
       })
       .catch((err) => console.error(err))
     }
-    
   },[isLoggedIn])
   
   useEffect(() => {
@@ -90,6 +89,7 @@ function App() {
     const jwt = localStorage.getItem('jwt');
   
     if (jwt) {
+      api.updateToken(jwt);
       getUserData(jwt)
       .then((res) => {
         setUserEmail(res.email)
@@ -105,6 +105,7 @@ function App() {
       .then((res) => {
           setUserEmail(data.email);
           localStorage.setItem('jwt', res.token);
+          api.updateToken(res.token);
           setIsLoggedIn(true);
           history.push('/');
       })
@@ -130,8 +131,8 @@ function App() {
         setIsConfirmed(false);
         setIsInfoToolTipOpen(true);
       });
-  }
-
+    }
+    
   const handleLogOut = () => {
     setUserEmail('');
     setIsLoggedIn(false);
@@ -161,7 +162,7 @@ function App() {
   const handleAddPlaceSubmit = (name, link) => {
     api.postCard(name, link)
       .then((newCard) => {
-        setCards([newCard, ...cards]); 
+        setCards([...cards, newCard]);
         closeAllPopup();
       })
       .catch((err) => console.error(err))
